@@ -118,7 +118,7 @@ main {
 }
 .text-overlay {
     position: absolute;
-    bottom:175px; 
+    bottom:150px; 
     transform: translate(-0, 100%);
     color: #E6E6E6;
     font-size: 22px;
