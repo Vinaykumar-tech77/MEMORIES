@@ -108,17 +108,19 @@ main {
 }
 
 .overlay-image {
-    width: 190px;
+    text-align: center;
+    width: 225px;
     height: auto;
     border-radius: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -55%);
+    bottom: 70%;    
 }
 .text-overlay {
     position: absolute;
-    bottom:150px; 
+    bottom:175px; 
     transform: translate(-0, 100%);
     color: #E6E6E6;
     font-size: 22px;
@@ -130,6 +132,9 @@ main {
 .features{
     text-align: justify;
     color: #e6e6e6;
+}
+.features h3{
+    padding-right: 10px;
 }
 .footer {
     background-color: #333;
