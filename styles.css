@@ -120,11 +120,12 @@ main {
 }
 .text-overlay {
     position: absolute;
-    bottom:175px; 
+    bottom:140px;
+    padding-left: 5px; 
+    padding-right: 5px;
     transform: translate(-0, 100%);
     color: #E6E6E6;
     font-size: 22px;
-    padding: 10px;
     border-radius: 5px;
     z-index: 1;
     text-align: justify;
