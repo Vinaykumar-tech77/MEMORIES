@@ -1,0 +1,195 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    background-color: #2D251B;
+    color: #D9C3AE;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+
+
+.menu-icon {
+    font-size: 35px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.memories {
+    font-size: 35px;
+}
+
+.menu {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #2D251B;
+    color: #D9C3AE;
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin: 10px 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #D9C3AE;
+    font-size: 25px;
+}
+.close-btn {
+    align-self: flex-end;
+    background-color: #2D251B;
+    color: #D9C3AE;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.close-btn:hover {
+    background-color: #D9C3AE;
+    color: #2D251B;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('signup1.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.2);/* Black background with 40% opacity */
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+.logo img {
+    width: 150px; /* Adjust as needed */
+}
+
+.additional-image img {
+    width: 500px; /* Adjust as needed */
+    margin-bottom: 20px;
+}
+
+.option {
+    margin-bottom: 20px;
+    border: 2px solid #342B23; /* White border */
+    border-radius: 20px; /* Rounded corners */
+    padding: 10px; /* Padding inside the border */
+    font-display: left;
+    background-color: rgba(252, 166, 209, 0.7); /* Pink background with some opacity */
+    color: black;
+    align-items:flex-start;
+}
+
+.option a{
+    text-decoration: none;
+    color: #2D251B;
+}
+
+.option img {
+    width: 30px; /* Adjust as needed */
+    margin-right: 10px;
+}
+
+.option span {
+    font-size: 16px;
+}
+
+.signup-button {
+    padding: 15px 30px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-button:hover {
+    background-color: #0056b3;
+}
+@media (max-width: 768px) {
+    .container {
+        background-position: left center; /* Keeps the image aligned to the left side */
+        background-size: auto 100%;
+            }
+    
+}   
+
+
+.logo img {
+    width: 150px; /* Adjust as needed */
+    margin-bottom: 20px;
+}
+
+.additional-image img {
+    width: 200px; /* Adjust as needed */
+    margin-bottom: 20px;
+}
+
+.options {
+    margin-bottom: 20px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.option img {
+    width: 30px; /* Adjust as needed */
+    margin-right: 10px;
+}
+
+.option span {
+    font-size: 16px;
+}
+
+.signup-button {
+    padding: 15px 30px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-button:hover {
+    background-color: #0056b3;
+}
