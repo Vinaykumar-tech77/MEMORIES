@@ -92,7 +92,7 @@ body, html {
     border-radius: 10px;
     text-align: center;
     color: #fff;
-    position: fixed;
+    position: relative;
 }
 
 .logo img {
