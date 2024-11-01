@@ -93,7 +93,7 @@ body, html {
     padding: 35px;
     text-align: center;
     color: #fff;
-    position: sticky;
+    position: fixed;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
 }
 
