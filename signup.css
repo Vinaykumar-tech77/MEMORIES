@@ -89,7 +89,7 @@ body, html {
 .overlay {
     top: 30px;
     bottom: 0px;
-    background: rgb(219,219.219.0.4);
+    background: rgb(219,219,219,0.4);
     padding: 35px;
     text-align: center;
     color: #fff;
