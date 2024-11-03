@@ -194,3 +194,8 @@ body, html {
     border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
+.options { /* Replace with your container’s class */
+    width: 100%; /* Adjust as needed */
+    max-width: 400px; /* Set a suitable max-width */
+    margin: auto;
+}
