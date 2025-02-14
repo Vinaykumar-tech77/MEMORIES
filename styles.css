@@ -1,6 +1,7 @@
+
 body {
     margin: 0;
-    font-family: 'Cormorant', serif;
+    font-family: Arial, sans-serif;
     background:linear-gradient(to left,#895A38, #BC7C45);
     transition: background 0.3s;
 }
