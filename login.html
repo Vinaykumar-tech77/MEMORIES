@@ -15,7 +15,7 @@
         <button class="close-btn" id="close-menu">X</button>
         <ul>
             <li><a href="index.html">HOME</a></li>
-            <li><a href="#dashboard">DASHBOARD</a></li>
+            <li><a href="dashboard.html">DASHBOARD</a></li>
             <li><a href="signup.html">SIGN-UP</a></li>
             <li><a href="login.html">LOGIN</a></li>
         </ul>
@@ -28,20 +28,22 @@
             <div class="additional-image">
                 <img width="150px" height="80px" src="login1.png" alt="CRAETE ACCOUNT">
             </div>
+            <form id="loginForm">
             <div class="options">
                 <div class="option">
                     <img style="width: 30px; height:35px; padding-top: 3px; padding-bottom: 3px; padding-left: 45px;" src="signup5.png" alt="USERNAME">
-                    <input type="text" placeholder="USERNAME" required>
+                    <input type="text" id="loginUsername" placeholder="Username" required>
                 </div>
                 <div class="option">
                     <img style="width: 40px; padding-left: 45px;" width="80px" height="40px" src="signup6.png" alt="PASSWORD">
-                    <input type="password" placeholder="PASSWORD" required>
+                    <input type="password" id="loginPassword" placeholder="Password" required>
                 </div>
             </div>
             <button style="font-weight: bolder;" class="signup-button">LOG IN</button><br><br>
             <a href="signup.html" style="color: #2D251B; font-size:large;">No Account Yet?</a>
         </div>
     </div>
+</form>
     <script src="script.js"></script>
 </body>
 </html>
