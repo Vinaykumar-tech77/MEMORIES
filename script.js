@@ -94,3 +94,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+
+// Automatically store user data
+document.addEventListener("DOMContentLoaded",() =>{
+    let username = localStorage.getItem("username");
+    let token = localStorage.getItem("token");
+    if(username && token){
+        console.log("User had logged in earlier :",username);
+        window.location.href = "dashboard.html";
+    }
+    else {
+        console.log("No user has logged in.");
+    }
+});
