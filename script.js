@@ -39,11 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const data = await response.json();
-            console.log(data);
 
             if (data.msg === "Success") {
                 alert("Signup successful!");
                 localStorage.setItem("token", data.token);
+                localStorage.setItem("username", username);
                 window.location.href = "signin.html";
             } else {
                 alert("Signup failed! " + data.msg);
@@ -79,11 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const data = await response.json();
-            console.log(data);
 
             if (data.msg === "Success") {
                 alert("Login successful!");
                 localStorage.setItem("token", data.token);
+                localStorage.setItem("username", username);
                 window.location.href = "dashboard.html";
             } else {
                 alert("Login failed! " + data.msg);
@@ -97,14 +97,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // Automatically store user data
-document.addEventListener("DOMContentLoaded",() =>{
+document.addEventListener("DOMContentLoaded", async () => {
     let username = localStorage.getItem("username");
     let token = localStorage.getItem("token");
-    if(username && token){
-        console.log("User had logged in earlier :",username);
-        window.location.href = "dashboard.html";
-    }
-    else {
+
+    if (username && token) {
+        console.log("User had logged in earlier:", username);
+
+        try {
+            const response = await fetch("https://virtualhandcricket.onrender.com/api/check", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, token })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.msg === "Success") {
+                console.log("Login details verified. Redirecting...");
+                window.location.href = "dashboard.html";
+            } else {
+                console.log("Invalid session. Removing stored credentials.");
+                localStorage.removeItem("username");
+                localStorage.removeItem("token");
+            }
+        } catch (error) {
+            console.error("Error verifying login:", error);
+            localStorage.removeItem("username");
+            localStorage.removeItem("token");
+        }
+    } else {
         console.log("No user has logged in.");
     }
 });
