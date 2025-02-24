@@ -1,0 +1,168 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Center the map on a clicked symbol</title>
+<script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.umd.js"></script>
+<link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.css" rel="stylesheet" />
+<style>
+  body {
+    margin: 0;
+    font-family: 'Cormorant', serif;
+    background:linear-gradient(to left,#895A38, #BC7C45);
+    transition: background 0.3s;
+}
+  #map {position: absolute; top: 50px; bottom: 0; width: 100%;}
+  header{
+    position: sticky;
+    top: 0;
+    background-color: #2D251B;
+    color: #D9C3AE;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    z-index: 1000;
+    left: 0;
+  }
+  .memorie{
+    background-color: black;
+    color: white;
+    padding: 5px;
+  }
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="memories">WELCOME TO<br> WORLD OF MEMORIES</div>
+    <div class="memorie" id="logoutBtn">LOG-OUT</div>
+  </header>
+<div id="map"></div>
+<script>
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+    let username = localStorage.getItem("username");
+    let token = localStorage.getItem("token");
+
+    if (username && token) {
+        try {
+            const response = await fetch("https://virtualhandcricket.onrender.com/api/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, token })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.msg === "Success") {
+                console.log("Logout successful on server.");
+            } else {
+                console.log("Server logout failed:", data.msg);
+            }
+        } catch (error) {
+            console.error("Logout request failed:", error);
+        }
+    }
+
+    // Clear local storage and redirect regardless of API response
+    localStorage.removeItem("username");
+    localStorage.removeItem("token");
+    alert("Logged out successfully!");
+    window.location.href = "index.html";
+});
+
+(async () =>{
+try{
+  let username = localStorage.getItem("username");
+  let token = localStorage.getItem("token");
+  const response= await fetch('https://virtualhandcricket.onrender.com/api/getloc', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    username: username,
+    token: token
+  }),
+});
+    if (!response.ok){
+	//Display some error msg and redirect
+	console.log("asd");
+	return {};
+    }
+    var list=await response.json();
+    console.log(list['list']);
+    console.log(list);
+    maptilersdk.config.apiKey = 'zyRzHC76bhHSbdaTmwhk';
+    var map = new maptilersdk.Map({
+        container: 'map',
+        style: maptilersdk.MapStyle.STREETS,
+        center: [78.084053, 20.290735 ],
+        zoom: 1.5
+    });
+
+    map.on('load', async function () {
+        // Add an image to use as a custom marker
+        const image = await map.loadImage(
+            './abc.png');
+        map.addImage('custom-marker', image.data);
+        // Add a GeoJSON source with 3 points.
+	var arr = [];
+	list["list"].forEach(func)
+	function func(item){
+		arr.push({
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': item["coordinates"]
+                        }
+                    });
+	}
+        map.addSource('points', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': arr
+            }
+        });
+
+        // Add a symbol layer
+        map.addLayer({
+            'id': 'symbols',
+            'type': 'symbol',
+            'source': 'points',
+            'layout': {
+                'icon-image': 'custom-marker'
+            }
+        });
+
+        // Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
+        map.on('click', 'symbols', function (e) {
+            console.log(e.features[0]);
+//Vinay
+	    // Vinaaaaay! Add fetch here to get the image urls and stuff
+//Vinay
+            map.flyTo({
+                center: e.features[0].geometry.coordinates
+            });
+        });
+
+        // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
+        map.on('mouseenter', 'symbols', function () {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'symbols', function () {
+            map.getCanvas().style.cursor = '';
+        });
+    });
+}catch(error){
+                console.error('There was a problem with the fetch operation:', error);
+            }
+ })
+ ();
+</script>
+</body>
+</html>
