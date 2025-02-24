@@ -132,3 +132,36 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("No user has logged in.");
     }
 });
+//Logout
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+    let username = localStorage.getItem("username");
+    let token = localStorage.getItem("token");
+
+    if (username && token) {
+        try {
+            const response = await fetch("https://virtualhandcricket.onrender.com/api/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, token })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.msg === "Success") {
+                console.log("Logout successful on server.");
+            } else {
+                console.log("Server logout failed:", data.msg);
+            }
+        } catch (error) {
+            console.error("Logout request failed:", error);
+        }
+    }
+
+    // Clear local storage and redirect regardless of API response
+    localStorage.removeItem("username");
+    localStorage.removeItem("token");
+    alert("Logged out successfully!");
+    window.location.href = "index.html";
+});
