@@ -6,20 +6,23 @@
 <title>Center the map on a clicked symbol</title>
 <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.umd.js"></script>
 <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <style>
   body {margin: 0; padding: 0;}
   #map {position: absolute; top: 0; bottom: 0; width: 100%;}
 </style>
 </head>
 <body>
-<div id="map"></div>
+<div id="map" style="height: 600px;"></div>
+<div id="albinisgreat" style="padding: 20px; text-align: center;"></div>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
     
    
 
 (async () =>{
 try{
-  const response= await fetch('https://virtualhandcricket.onrender.com/api/getloc', {
+  const response= await fetch('https://virtualhandcricket.onrender.com/api/getloc',{
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -92,10 +95,6 @@ try{
         // Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
         map.on('click', 'symbols',  function (e) {
             for (let i = 0; i<e.features.length; i++){
-                //Vinay
-                        // Vinaaaaay! Add fetch here to get the image urls and stuff
-                //Vinay
-                //Vinayyyyyy! u have to display the images after sending fetch each time and then storing the img links and displaying them as u keep getting them
                console.log(e.features[i].properties.coor);
                (async () =>{ 
             try{
@@ -115,17 +114,19 @@ try{
             });
             const data = await response.json();
 
-            if(response.ok && data.msg == "Success"){
+            if (response.ok && data.msg === "Success") {
                 console.log("Displaying The Images");
-                for(let i =0;i<data.list.length;i++){
-                const img = data.list[i]["url"];
+                const imageBox = document.getElementById("albinisgreat");
+                data.list.forEach(item => {
                 const iframe = document.createElement("iframe");
-                iframe.src = img;
+                iframe.src = item["url"];
                 iframe.width = "600";
                 iframe.height = "400";
-                document.body.appendChild(iframe);
-                }
-            }
+                iframe.style.marginBottom = "10px";
+                imageBox.appendChild(iframe);
+        });
+}
+
             else{
                 console.log("Error occured!!");
             }
